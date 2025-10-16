@@ -193,6 +193,8 @@
         }
     </style>
 </head>
+
+
 <body>
 <h1>
     <span style="color: var(--color-principal);">🏎️</span> Nuestra Carrera Juntos <span style="color: var(--color-acento);">❤️</span>
@@ -213,5 +215,18 @@
 <div class="meta">
     <span style="color: var(--color-principal);">🏁</span> Contigo quiero llegar siempre a la meta <span class="emoji-acento">❤️</span>
 </div>
+<audio id="bg-music" autoplay loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // Intentar reproducir automáticamente cuando el usuario interactúe
+  document.addEventListener('click', function() {
+    const audio = document.getElementById('bg-music');
+    if (audio.paused) {
+      audio.play().catch(() => {});
+    }
+  });
+</script>
 </body>
 </html>
