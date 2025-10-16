@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestra Carrera Juntos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variables CSS para facilitar cambios de color */
+        :root {
+            --color-principal: #FFC300; /* Dorado suave/Amarillo elegante */
+            --color-acento: #E91E63; /* Rosa/Rojo suave para el corazón */
+            --color-fondo: #000000;
+            --color-texto: #FFFFFF;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif; /* Usamos la fuente Montserrat */
+            background: var(--color-fondo);
+            color: var(--color-texto);
+            text-align: center;
+            overflow-x: hidden;
+            padding-bottom: 50px; /* Espacio al final */
+        }
+
+        /* Estilo del título */
+        h1 {
+            margin: 40px 10px 20px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-principal);
+            text-shadow: 0 0 10px rgba(255, 195, 0, 0.5); /* Sombra suave para el brillo */
+        }
+
+        /*
+        * SECCIÓN DE LA PISTA - Más minimalista y elegante
+        */
+        .pista-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            height: 150px; /* Menos alta para un aspecto más sutil */
+            margin: 0 auto;
+            background: #222; /* Asfalto oscuro */
+            border-radius: 10px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+            overflow: hidden;
+        }
+
+        /* Simulación de la línea de la carretera */
+        .linea-pista {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            height: 4px;
+            background: repeating-linear-gradient(to right,
+            var(--color-texto) 0,
+            var(--color-texto) 50px,
+            transparent 50px,
+            transparent 100px
+            );
+            animation: moveLine 2s linear infinite; /* Animación de movimiento */
+        }
+
+        @keyframes moveLine {
+            from { background-position-x: 0; }
+            to { background-position-x: -100px; }
+        }
+
+        /* Estilo del coche */
+        .car {
+            position: absolute;
+            bottom: 20px;
+            /* Usamos la imagen original, ajustamos el tamaño */
+            width: 80px;
+            animation: drive 7s linear infinite;
+            filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
+        }
+
+        @keyframes drive {
+            from { left: -100px; }
+            to { left: 110%; }
+        }
+
+        /*
+        * GALERÍA DE FOTOS - Centrada y con mejor presentación
+        */
+        .fotos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* Espacio aumentado */
+            padding: 40px 20px;
+        }
+
+        .foto-wrapper {
+            /* Contenedor para manejar las imágenes */
+            width: 180px;
+            height: 250px;
+            max-width: 45%;
+            border: 2px solid var(--color-principal); /* Marco sutil */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.8); /* Sombra más profunda */
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+            cursor: pointer;
+        }
+
+        /* Ajuste para que las fotos estén centradas y una debajo de la otra en una columna */
+        .fotos > .foto-wrapper:nth-child(3) {
+            flex-basis: 100%; /* La tercera foto ocupa toda la línea */
+            width: 200px; /* Un poco más grande o adaptado */
+            height: 280px;
+            margin-top: 20px; /* Espacio extra */
+        }
+
+
+        .foto-wrapper:hover {
+            transform: translateY(-5px) scale(1.03); /* Efecto 3D al pasar el ratón */
+            box-shadow: 0px 12px 25px rgba(255, 195, 0, 0.4); /* Sombra con color principal */
+        }
+
+        .foto-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Asegura que la imagen cubra el contenedor */
+            display: block;
+            transition: opacity 0.3s;
+        }
+
+        /*
+        * MENSAJE FINAL - Estilo de botón/banner elegante
+        */
+        .meta {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin: 40px auto;
+            padding: 20px 30px;
+            max-width: 90%;
+            background: linear-gradient(90deg, #111, #333, #111); /* Fondo oscuro con degradado */
+            color: var(--color-texto);
+            border-radius: 50px; /* Bordes redondeados para estilo de botón/banner */
+            border: 3px solid var(--color-principal); /* Borde dorado */
+            box-shadow: 0px 0px 20px rgba(255, 195, 0, 0.6);
+            transition: transform 0.3s;
+        }
+
+        .meta:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #333, #555, #333);
+        }
+
+        /* Estilo para los emojis dentro del mensaje */
+        .meta .emoji-acento {
+            color: var(--color-acento); /* Corazón con color de acento */
+        }
+
+        /*
+        * RESPONSIVIDAD - Ajustes para móviles
+        */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+                margin: 30px 10px 15px;
+            }
+            .pista-container {
+                height: 100px;
+            }
+            .car {
+                width: 60px;
+            }
+            .foto-wrapper {
+                width: 140px;
+                height: 180px;
+                max-width: none; /* Quitamos la limitación para móviles */
+            }
+            /* La foto grande vuelve a ser normal en móvil */
+            .fotos > .foto-wrapper:nth-child(3) {
+                flex-basis: auto;
+                width: 140px;
+                height: 180px;
+                margin-top: 0;
+            }
+            .meta {
+                font-size: 1.3rem;
+                padding: 15px 20px;
+            }
+            .fotos {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1>
+    <span style="color: var(--color-principal);">🏎️</span> Nuestra Carrera Juntos <span style="color: var(--color-acento);">❤️</span>
+</h1>
+
+<div class="pista-container">
+    <div class="linea-pista"></div>
+    <img src="F4.png" alt="Coche de carrera" class="car">
+</div>
+
+
+<div class="fotos">
+    <div class="foto-wrapper"><img src="F1.jpg" alt="Nosotros 1"></div>
+    <div class="foto-wrapper"><img src="F2.jpg" alt="Nosotros 2"></div>
+    <div class="foto-wrapper"><img src="F3.jpg" alt="Nosotros 3"></div>
+</div>
+
+<div class="meta">
+    <span style="color: var(--color-principal);">🏁</span> Contigo quiero llegar siempre a la meta <span class="emoji-acento">❤️</span>
+</div>
+</body>
+</html>
